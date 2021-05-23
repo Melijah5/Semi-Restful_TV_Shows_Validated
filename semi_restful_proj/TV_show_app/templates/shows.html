@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Semi-restful TV show</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#!">Semi-Restful TV show</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>All shows</h1>
+        <div class="col-md">
+            <div class="container py-5">
+                <table class="table table-primary">
+                    <thead>
+                        <tr class="table-info">
+                            <th scope="col">ID</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Network</th>
+                            <th scope="col">Release Date</th>
+                            <th scope="col">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>{% for show in all_shows %}
+                        <tr>
+
+                            <td>{{show.id}}</td>
+                            <td>{{show.title}}</td>
+                            <td>{{show.network}}</td>
+                            <td>{{show.release_date}}</td>
+                            <td><a href="/shows/{{ show.id }}">Show</a> | <a href="/shows/{{ show.id }}/edit">edit</a> | <a href="/shows/delete/{{ show.id }}">delete</a></td>
+
+                        </tr>{% endfor %}
+                    </tbody>
+                </table>
+                <a href="/shows/new">Add a New show</a>
+            </div>
+        </div>
+    </div>
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Semi_restful TV show 2021</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

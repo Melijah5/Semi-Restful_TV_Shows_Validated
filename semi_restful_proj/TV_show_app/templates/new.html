@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#!">Semi-Restful TV show</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h4><a href="/shows">Go back</a></h4>
+        <h1>Add a new Show</h1>
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+
+        <form action="/shows/new" method="post">
+            {% csrf_token %}
+            <div class="md-form">
+                <label for="form1">Title</label>
+                <input type="text" id="form1" class="form-control" name="title" value="{{show.title }}">
+
+            </div>
+            <div class="md-form">
+                <label for="form1">Network</label>
+                <input type="text" id="form1" class="form-control" name="network" value="{{show.network}}">
+
+            </div>
+            <div class="md-form">
+                <label for="form1">Release Date:</label>
+                <input type="date" id="form1" class="form-control" name="release_date" value="{{show.release_date|date:'Y-m-d'}}">
+
+            </div>
+
+            <div class="md-form">
+                <label for="description">Description:</label>
+                <textarea id="description" class="form-control md-textarea" name="description" value="{{show.description}}" rows="3"></textarea>
+
+            </div>
+
+            <div class="md-form p-3 text-align:center">
+                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" href="/shows/">Create</button>
+            </div>
+
+        </form>
+    </div>
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Semi_restful TV show 2021</p>
+        </div>
+    </footer>
+</body>
+
+</html>
